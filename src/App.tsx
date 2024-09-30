@@ -14,6 +14,10 @@ const router = createBrowserRouter([
     path: '/quill',
     element: <Quill />,
   },
+  {
+    path: '/quill/:id',
+    element: <div className="text-center font-bold">Hello test</div>,
+  },
 ]);
 function App() {
   return <RouterProvider router={router} />;
