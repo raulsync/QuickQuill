@@ -8,7 +8,7 @@ import ViewQuill from './pages/ViewQuill';
 // Define a layout component to include the NavBar and an Outlet
 const Layout = () => (
   <div className="w-full flex justify-center">
-    <div className="flex flex-col w-[60%]">
+    <div className="flex flex-col w-[60%] gap-0">
       <NavBar />
       <Outlet />
     </div>

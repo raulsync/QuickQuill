@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { addToQuill, updateToQuill } from '../slices/quillSlice';
-import { AppDispatch } from '../store/store';
+import { AppDispatch, RootState } from '../store/store';
 
 interface IQuill {
   title: string;
@@ -15,9 +15,19 @@ function Home() {
   const [title, setTitle] = useState<string>('');
   const [contentValue, setContentValue] = useState<string>('');
   const [searchParam, setSearchParam] = useSearchParams();
-  const quillId = searchParam.get('quill');
-
+  const quillId = searchParam.get('quillId');
+  const quills = useSelector((state: RootState) => state.quill.quill);
   const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    if (quillId) {
+      const paste = quills.find((quill) => quill.id === quillId);
+      if (paste) {
+        setTitle(paste.title);
+        setContentValue(paste.content);
+      }
+    }
+  }, [quillId, quills]);
 
   function createQuill() {
     const quill: IQuill = {
@@ -40,8 +50,8 @@ function Home() {
   }
 
   return (
-    <div className="flex flex-col items-center gap-7">
-      <div className="flex justify-center mt-20 gap-5 w-full">
+    <div className="flex flex-col items-center gap-8">
+      <div className="flex justify-center mt-20 gap-5 w-full ">
         <input
           className="px-5 w-full py-2 rounded-lg bg-gray-800"
           type="text"
@@ -59,7 +69,10 @@ function Home() {
       </div>
       <div className="w-full flex justify-center">
         <textarea
-          className="p-5 min-w-full bg-gray-800 rounded-lg"
+          className="p-5 focus-visible:ring-0 min-w-full bg-gray-800 rounded-lg"
+          style={{
+            caretColor: '#1a1a1a',
+          }}
           rows={18}
           placeholder="enter your content here"
           value={contentValue}

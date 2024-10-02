@@ -4,6 +4,7 @@ import { RiDeleteBinLine } from 'react-icons/ri';
 import { FiEdit } from 'react-icons/fi';
 import { LuShare } from 'react-icons/lu';
 import { GrView } from 'react-icons/gr';
+import { Link } from 'react-router-dom';
 
 interface QuillItemProps {
   quill: {
@@ -32,7 +33,9 @@ const QuillItem: React.FC<QuillItemProps> = ({
         </div>
         <div className="flex gap-1">
           <button>
-            <FiEdit />
+            <Link to={`/?quillId=${quill?.id}`}>
+              <FiEdit />
+            </Link>
           </button>
           <button>
             <GrView />
