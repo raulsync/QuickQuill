@@ -20,7 +20,9 @@ const QuillList: React.FC<QuillListProps> = ({
   return (
     <div className="flex flex-col items-center justify-center gap-2">
       {filteredData.length <= 0 ? (
-        <div className="w-full">No Data Found</div>
+        <div className="w-[99%] m-2 text-3xl min-h-12 text-center p-2 border border-gray-600">
+          No Data Found
+        </div>
       ) : (
         filteredData.map((quill) => (
           <QuillItem
