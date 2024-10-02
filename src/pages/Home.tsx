@@ -43,7 +43,7 @@ function Home() {
     <div className="flex flex-col items-center gap-7">
       <div className="flex justify-center mt-20 gap-5 w-full">
         <input
-          className="px-5 w-[32%] py-2 rounded-lg bg-gray-800"
+          className="px-5 w-full py-2 rounded-lg bg-gray-800"
           type="text"
           placeholder="Enter your title"
           value={title}
@@ -52,15 +52,15 @@ function Home() {
 
         <button
           onClick={createQuill}
-          className="bg-blue-500 px-4 rounded-lg font-semibold"
+          className="bg-blue-500 px-4 w-1/3 rounded-lg font-semibold"
         >
           {quillId ? 'Update My Quill' : 'Create My Quill'}
         </button>
       </div>
       <div className="w-full flex justify-center">
         <textarea
-          className="p-5 min-w-[43%] bg-gray-800 rounded-lg"
-          rows={20}
+          className="p-5 min-w-full bg-gray-800 rounded-lg"
+          rows={18}
           placeholder="enter your content here"
           value={contentValue}
           onChange={(e) => setContentValue(e.target.value)}
