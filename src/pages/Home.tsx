@@ -2,6 +2,14 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { addToQuill, updateToQuill } from '../slices/quillSlice';
+import { AppDispatch } from '../store/store';
+
+interface IQuill {
+  title: string;
+  content: string;
+  id: string;
+  createdAt: string;
+}
 
 function Home() {
   const [title, setTitle] = useState<string>('');
@@ -9,13 +17,14 @@ function Home() {
   const [searchParam, setSearchParam] = useSearchParams();
   const quillId = searchParam.get('quill');
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   function createQuill() {
-    const quill = {
+    const quill: IQuill = {
       title: title,
       content: contentValue,
-      id: quillId,
+      id: quillId || Date.now().toString(20),
+      createdAt: new Date().toISOString(),
     };
 
     if (quillId) {
@@ -23,6 +32,11 @@ function Home() {
     } else {
       dispatch(addToQuill(quill));
     }
+
+    //after creation of quill clear the title and contentValue
+    setTitle('');
+    setContentValue('');
+    setSearchParam({});
   }
 
   return (
@@ -40,7 +54,7 @@ function Home() {
           onClick={createQuill}
           className="bg-blue-500 px-4 rounded-lg font-semibold"
         >
-          {quillId ? 'Update my quill' : 'Create my quill'}
+          {quillId ? 'Update My Quill' : 'Create My Quill'}
         </button>
       </div>
       <div className="w-full flex justify-center">
