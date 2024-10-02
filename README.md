@@ -37,4 +37,6 @@ Make sure you have the following installed:
 ```bash
 git clone https://github.com/raulsync/QuickQuill
 cd QuickQuill
+npm install or yarn install
+npm run dev
 ```
