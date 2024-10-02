@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import quillreducer from '../slices/quillSlice';
+import quillReducer from '../slices/quillSlice';
 
 export const store = configureStore({
   reducer: {
-    quill: quillreducer,
+    quill: quillReducer,
   },
 });
 
