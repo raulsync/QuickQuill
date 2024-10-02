@@ -38,7 +38,9 @@ const QuillItem: React.FC<QuillItemProps> = ({
             </Link>
           </button>
           <button>
-            <GrView />
+            <Link to={`/quill/${quill.id}`}>
+              <GrView />
+            </Link>
           </button>
           <button onClick={() => handleDelete(quill.id)}>
             <RiDeleteBinLine />
